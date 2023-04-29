@@ -56,8 +56,7 @@
 
 		}
 
-		.btn img 
-		{
+		.btn img {
 			display: flex;
 		}
 
@@ -65,6 +64,7 @@
 		.btn span {
 			display: block;
 			font-size: 18px;
+			text-align: center;
 			margin-top: 5px;
 		}
 
@@ -162,101 +162,12 @@
 	</style>
 </head>
 
+
 <body>
 
 	<div id="games">
-		<ul>
-
-			<li>
-				<a href="./games/SnakeCopibara/index.html" class="btn">
-					<img src="./games/SnakeCopibara/index.icon.png" alt="Play">
-					<span>Snake Copibara</span>
-				</a>
-			</li>
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>ScarySound</span>
-				</a>
-			</li>
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>ScarySound</span>
-				</a>
-			</li>
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>ScarySound</span>
-				</a>
-			</li>
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>ScarySound</span>
-				</a>
-			</li>
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>ScarySound</span>
-				</a>
-			</li>
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>ScarySound</span>
-				</a>
-			</li>
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>ScarySound</span>
-				</a>
-			</li>
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>ScarySound</span>
-				</a>
-			</li>
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>ScarySound</span>
-				</a>
-			</li>
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>ScarySound</span>
-				</a>
-			</li>
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>ScarySound</span>
-				</a>
-			</li>
-		</ul>
-		<ul>
-
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>Игра 1</span>
-				</a>
-			</li>
-		</ul>
-		<ul>
-
-			<li>
-				<a href="./games/ScarySound/index.html" class="btn">
-					<img src="./games/ScarySound/index.icon.png" alt="Play">
-					<span>Игра 1</span>
-				</a>
-			</li>
+		<ul id="game-list">
+			<!-- Кнопки игр будут здесь -->
 		</ul>
 	</div>
 	<div class="menu" id="sidebar">
@@ -277,5 +188,36 @@
 	</div>
 
 </body>
+<script>
+	// Получить элемент списка для игр
+	const gameList = document.getElementById('game-list');
 
+	// Получить список папок с играми
+	fetch('./games/')
+		.then(response => response.text())
+		.then(html => {
+			// Создать временный элемент div для парсинга html содержимого ответа
+			const temp = document.createElement('div');
+			temp.innerHTML = html;
+
+			// Найти все ссылки на папки игр
+			const gameFolders = Array.from(temp.querySelectorAll('a[href$="/"]'));
+
+			// Создать кнопку для каждой игры
+			gameFolders.filter((folder, index) => index > 0).forEach(folder => {
+				const gameName = folder.innerText;
+				const gamePath = `./games/${gameName}/index.html`;
+
+				const button = document.createElement('li');
+				button.innerHTML = `
+            <a href="${gamePath}" class="btn">
+              <img src="./games/${gameName}/index.icon.png" alt="Play">
+              <span>${gameName}</span>
+            </a>
+          `;
+
+				gameList.appendChild(button);
+			});
+		});
+</script>
 </html>
