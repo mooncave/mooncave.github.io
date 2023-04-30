@@ -103,7 +103,6 @@
 			float: right;
 			display: flex;
 			flex-wrap: wrap;
-			justify-content: center;
 			width: calc(100% - 280px);
 		}
 
@@ -118,6 +117,9 @@
 			margin-top: 4px;
 			margin-left: 4px;
 			margin-right: 4px;
+		}
+		#games ul {
+			vertical-align: auto;
 		}
 
 		#sidebar {
@@ -167,6 +169,16 @@
 
 	<div id="games">
 		<ul id="game-list">
+			<li><a href="./games/ScarySound/index.html" class="btn">
+					<img src="./games/ScarySound/index.icon.png" alt="Play">
+					<span>ScarySound</span>
+				</a>
+			</li>
+			<li><a href="./games/SnakeCopibara/index.html" class="btn">
+				<img src="./games/SnakeCopibara/index.icon.png" alt="Play">
+				<span>SnakeCopibara</span>
+			</a>
+		</li>
 			<!-- Кнопки игр будут здесь -->
 		</ul>
 	</div>
@@ -175,7 +187,7 @@
 		<h2>Категории</h2>
 		<ul>
 			<li class="active">Все игры</li>
-			<li>Шутеры</li>
+			<!-- <li>Шутеры</li>
 			<li>РПГ</li>
 			<li>Симуляторы</li>
 			<li>Головоломки</li>
@@ -183,41 +195,42 @@
 			<li>Стратегии</li>
 			<li>Спортивные игры</li>
 			<li>Игры про выживание</li>
-			<li>Хорроры</li>
+			<li>Хорроры</li> -->
 		</ul>
 	</div>
 
 </body>
 <script>
-	// Получить элемент списка для игр
-	const gameList = document.getElementById('game-list');
+	// // Получить элемент списка для игр
+	// const gameList = document.getElementById('game-list');
 
-	// Получить список папок с играми
-	fetch('./games/')
-		.then(response => response.text())
-		.then(html => {
-			// Создать временный элемент div для парсинга html содержимого ответа
-			const temp = document.createElement('div');
-			temp.innerHTML = html;
+	// // Получить список папок с играми
+	// fetch('./games/')
+	// 	.then(response => response.text())
+	// 	.then(html => {
+	// 		// Создать временный элемент div для парсинга html содержимого ответа
+	// 		const temp = document.createElement('div');
+	// 		temp.innerHTML = html;
 
-			// Найти все ссылки на папки игр
-			const gameFolders = Array.from(temp.querySelectorAll('a[href$="/"]'));
+	// 		// Найти все ссылки на папки игр
+	// 		const gameFolders = Array.from(temp.querySelectorAll('a[href$="/"]'));
 
-			// Создать кнопку для каждой игры
-			gameFolders.filter((folder, index) => index > 0).forEach(folder => {
-				const gameName = folder.innerText;
-				const gamePath = `./games/${gameName}/index.html`;
+	// 		// Создать кнопку для каждой игры
+	// 		gameFolders.filter((folder, index) => index > 0).forEach(folder => {
+	// 			const gameName = folder.innerText;
+	// 			const gamePath = `./games/${gameName}/index.html`;
 
-				const button = document.createElement('li');
-				button.innerHTML = `
-            <a href="${gamePath}" class="btn">
-              <img src="./games/${gameName}/index.icon.png" alt="Play">
-              <span>${gameName}</span>
-            </a>
-          `;
+	// 			const button = document.createElement('li');
+	// 			button.innerHTML = `
+    //         <a href="${gamePath}" class="btn">
+    //           <img src="./games/${gameName}/index.icon.png" alt="Play">
+    //           <span>${gameName}</span>
+    //         </a>
+    //       `;
 
-				gameList.appendChild(button);
-			});
-		});
+	// 			gameList.appendChild(button);
+	// 		});
+	// 	});
 </script>
+
 </html>
