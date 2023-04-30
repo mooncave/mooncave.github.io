@@ -27,44 +27,50 @@
 		}
 
 		li {
-			margin: 20px;
-			padding: 20px;
+			margin: 10px;
+			padding: 10px;
 			background-color: #333;
 			border-radius: 10px;
 			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 			transition: all 0.3s ease;
+			
 		}
-
+		
 		li a {
 			color: #fff;
 			text-decoration: none;
 			font-size: 24px;
 		}
-
+		
 		li:hover {
 			transform: translateY(-5px);
 			box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
 		}
-
+		
 		.btn {
-			display: block;
-			padding: 1px 1px;
+			/* display: block; */
+			/* padding: 1px 1px; */
 			color: #fff;
 			text-decoration: none;
 			border-radius: 5px;
 			width: 100px;
+			height: 100px;
 
 		}
 
 		.btn img {
-			display: flex;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
 		}
+
 
 		/* новые стили для надписей */
 		.btn span {
-			display: block;
-			font-size: 18px;
+			display: grid;
 			text-align: center;
+			text-overflow: clip;
+			font-size: 18px;
 			margin-top: 5px;
 		}
 
@@ -90,7 +96,7 @@
 		}
 
 		.menu li:hover {
-			background-color: #444;
+			background-color: #44444400;
 			cursor: pointer;
 		}
 
@@ -103,29 +109,28 @@
 			float: right;
 			display: flex;
 			flex-wrap: wrap;
-			width: calc(100% - 280px);
-		}
-
-		#games img {
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
+			width: calc(100% - 230px);
 		}
 
 		#games li {
-			margin-bottom: 1px;
-			margin-top: 4px;
-			margin-left: 4px;
-			margin-right: 4px;
+			margin-bottom: 10px;
+			margin-top: 10px;
+			margin-left: 10px;
+			margin-right: 10px;
 		}
-
+		
+		#games a {
+			object-fit: fill;
+		}
+		
 		#games ul {
 			vertical-align: auto;
+			
 		}
 
 		#sidebar {
 			float: left;
-			margin-right: 20px;
+			margin-right: 2px;
 		}
 
 		#sidebar h2 {
@@ -141,7 +146,7 @@
 		}
 
 		#sidebar li {
-			margin: 5px 0;
+			margin: 2px 0;
 			text-align: center;
 			width: auto;
 		}
@@ -192,11 +197,10 @@
 
 </body>
 <script>
-	function CreateButton(name)
-	{
+	function CreateButton(name) {
 		const gameList = document.getElementById('game-list');
 		const button = document.createElement('li');
-	 	button.innerHTML = `
+		button.innerHTML = `
             <a href="./games/${name}/index.html" class="btn">
                <img src="./games/${name}/index.icon.png" alt="Play">
                <span>${name}</span>
